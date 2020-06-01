@@ -2,11 +2,14 @@ package kr.co.tjoeun.listview_20200601
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
+import kr.co.tjoeun.listview_20200601.adapters.StudentAdapter
 import kr.co.tjoeun.listview_20200601.datas.Student
 
 class MainActivity : BaseActivity() {
 
     val students = ArrayList<Student>()
+    lateinit var studentAdapter : StudentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,9 @@ class MainActivity : BaseActivity() {
         students.add(Student("김형근", 1989, true))
         students.add(Student("이용희", 1992, true))
         students.add(Student("이지수", 1984, false))
+
+        studentAdapter = StudentAdapter(mContext, R.layout.student_list_item, students)
+        studentListView.adapter = studentAdapter
 
     }
 
