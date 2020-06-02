@@ -28,6 +28,15 @@ class MainActivity : BaseActivity() {
 
         }
 
+        studentListView.setOnItemLongClickListener { parent, view, position, id ->
+
+            val clickedStudent = students[position]
+
+            Toast.makeText(mContext, "${clickedStudent.name}을 오래 누름", Toast.LENGTH_SHORT).show()
+
+            return@setOnItemLongClickListener true
+        }
+
     }
 
     override fun setValues() {
