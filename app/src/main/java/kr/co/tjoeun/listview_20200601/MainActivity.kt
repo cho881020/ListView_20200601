@@ -1,8 +1,10 @@
 package kr.co.tjoeun.listview_20200601
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.listview_20200601.adapters.StudentAdapter
 import kr.co.tjoeun.listview_20200601.datas.Student
@@ -30,8 +32,17 @@ class MainActivity : BaseActivity() {
 
         studentListView.setOnItemLongClickListener { parent, view, position, id ->
 
-            students.removeAt(position)
-            studentAdapter.notifyDataSetChanged()
+            val alert = AlertDialog.Builder(mContext)
+            alert.setTitle("삭제 확인")
+            alert.setMessage("정말 이 학생을 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+                students.removeAt(position)
+                studentAdapter.notifyDataSetChanged()
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
+
+
 
             return@setOnItemLongClickListener true
         }
