@@ -30,7 +30,21 @@ class StudentAdapter(context: Context, resId: Int, list: List<Student>) : ArrayA
 
         val data = mList.get(position)
 
-        nameAndAgeTxt.text = data.name
+//        이름과 나이를 실제로 출력
+//        조경진, 1988년생 => 조경진(33세)
+//        => 1988년생은 2020년 현재 몇살?
+//        => 2020 - 1988 + 1
+//        nameAndAgeTxt.text = data.name
+
+        nameAndAgeTxt.text = "${data.name}(${data.getKoreanAge(2020)}세)"
+
+
+        if (data.isMale) {
+            genderTxt.text = "남성"
+        }
+        else {
+            genderTxt.text = "여성"
+        }
 
         return row
     }
